@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Drill-Down UI</title>
+    <meta name="description" content="Explore hierarchical data interactively through dynamic drill-down levels and elegant UI transitions.">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Honogram for SLM</h1>
+            <!-- <p>Drill down into data levels by clicking items</p> -->
+            <div class="header-actions">
+                <div class="upload-area">
+                    <input type="file" id="csv-upload" accept=".csv" hidden>
+                    <button id="upload-btn" class="btn-secondary">
+                        <i data-lucide="upload"></i> Upload CSV
+                    </button>
+                    <span id="file-name" class="file-name-display"></span>
+                </div>
+                <button id="settings-btn" class="btn-primary" style="display: none;">
+                    <i data-lucide="settings"></i> Configure View
+                </button>
+            </div>
+
+        </header>
+
+        <!-- Configuration Modal -->
+        <div id="config-modal" class="modal-overlay" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Configure Hierarchical View</h2>
+                    <button id="close-config" class="btn-icon"><i data-lucide="x"></i></button>
+                </div>
+                <div class="modal-body">
+                    <section class="config-section">
+                        <h3>1. Hierarchy & Drill-down</h3>
+                        <p class="section-desc">Select and order columns to define your drill-down path.</p>
+                        <div id="hierarchy-sortable" class="sortable-list">
+                            <!-- Hierarchy items will be injected here -->
+                        </div>
+                    </section>
+
+                    <section class="config-section">
+                        <h3>2. Transition Point</h3>
+                        <p class="section-desc">At which level should the view switch to a full table?</p>
+                        <select id="table-transition-level" class="form-select">
+                            <!-- Options will be injected here -->
+                        </select>
+                    </section>
+
+                    <section class="config-section">
+                        <h3>3. Table Columns</h3>
+                        <p class="section-desc">Select and order columns to display in the final table view.</p>
+                        <div id="columns-sortable" class="sortable-list">
+                            <!-- Column items will be injected here -->
+                        </div>
+                    </section>
+                </div>
+                <div class="modal-footer">
+                    <button id="apply-config" class="btn-primary">Apply Settings</button>
+                </div>
+            </div>
+        </div>
+
+
+        <nav id="breadcrumb-container" class="breadcrumb-container">
+            <span class="breadcrumb-item active" id="breadcrumb-home">
+                <i class="lucide-home" data-lucide="home"></i>
+                <span>Home</span>
+            </span>
+        </nav>
+
+        <main id="content-container">
+            <div id="view-content" class="view-transition-container">
+                <!-- Dynamic content will be injected here -->
+            </div>
+        </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
