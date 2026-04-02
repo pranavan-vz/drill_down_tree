@@ -33,7 +33,8 @@ async function init() {
     refreshIcons(); // Initial icon load for static HTML buttons
     loadConfig();
 
-    Papa.parse('/data.csv', {
+    const baseUrl = import.meta.env.BASE_URL || '/';
+    Papa.parse(`${baseUrl}data.csv`, {
       download: true,
       header: true,
       skipEmptyLines: true,
